@@ -1,16 +1,17 @@
 import { Fragment } from "react";
-import {BiLeftArrowAlt} from "react-icons/bi"
+import { BiLeftArrowAlt } from "react-icons/bi";
+import {SlLocationPin} from "react-icons/sl"
 
 const WeatherDetail = () => {
     return (
         <Fragment>
             <div className="w-full bg-white rounded shadow-lg m-2 md:max-w-sm md:mx-auto cursor-pointer flex flex-col justify-center items-center text-center border-none">
-                <div class="text-md text-xl text-left w-full font-semibold  text-[#42ADFD] p-4 border-b-2 border-b-gray-300 flex items-center gap-2">
+                <div className="text-md text-xl text-left w-full font-semibold  text-[#42ADFD] p-4 border-b-2 border-b-gray-300 flex items-center gap-2">
                     <span><BiLeftArrowAlt size={29} /></span>
-                    <span class="uppercase">Weather App</span>
+                    <span className="uppercase">Weather App</span>
                 </div>
-                <div class="w-32 h-32 flex items-center justify-center">
-                    <svg class="h-20" viewBox="0 0 81 73" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <div className="w-32 h-32 flex items-center justify-center">
+                    <svg className="h-20" viewBox="0 0 81 73" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <g id="Desktop-HD" transform="translate(-174.000000, -308.000000)" fill-rule="nonzero">
                                 <g id="Group" transform="translate(95.000000, 222.000000)">
@@ -23,6 +24,14 @@ const WeatherDetail = () => {
                         </g>
                     </svg>
                 </div>
+                <div className="text-6xl font-semibold text-gray-900 mb-3">13º C</div>
+                <p className="text-gray-700 font-semibold  mb-2">Partly cloud</p>
+                <div className="flex items-center justify-center gap-1">
+                    <SlLocationPin className="mb-2" size={"17"} />
+                    <p class="text-gray-700 font-semibold  mb-2">Kathmandu, Nepal</p>
+                </div>
+
+
 
             </div>
         </Fragment>
