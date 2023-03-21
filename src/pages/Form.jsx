@@ -34,7 +34,7 @@ const Form = () => {
 
                         <div className="flex flex-col md:w-full">
                             <button
-                                onClick={getUserCity}
+                                // onClick={getUserCity}
                                 type="button" className="mx-auto py-3 my-4 text-white font-semibold rounded bg-[#42ADFD] w-[100%]">
                                 Get Device Location
                             </button>
