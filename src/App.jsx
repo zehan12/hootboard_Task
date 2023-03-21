@@ -5,7 +5,8 @@ import WeatherDetail from './pages/WeatherDetail'
 
 const App = () => (
   <div className='container flex items-center justify-center h-[90vh]'>
-    <Form />
+    {/* <Form /> */}
+    <WeatherDetail />
   </div>
 )
 
