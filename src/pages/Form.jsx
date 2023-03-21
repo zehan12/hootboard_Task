@@ -1,11 +1,29 @@
-import { useState } from "react";
+import React,{ useState, Fragment } from "react";
 
 const Form = () => {
 
     const [location, setLocation] = useState("");
 
-    const getUserCity = () => {
 
+    const getcityWeather = async (location) => {
+        const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=5e2a6dff2f070b7cc434af93e5e4d950`);
+        const data = await res.json();
+        console.log(data)
+    }
+
+    const getUserCity = async () => {
+        const showPosition = async ({ coords }) => {
+            const APIkey = '8a735895b3560c7dd2ad8d685835a447';
+            const URL = `https://api.openweathermap.org/data/2.5/weather?lat=${coords?.latitude}&lon=${coords?.longitude}&appid=${APIkey}`;
+            const res = await fetch(URL);
+            const data = await res.json();
+            console.log(data)
+        }
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
     }
 
     return (
@@ -34,7 +52,7 @@ const Form = () => {
 
                         <div className="flex flex-col md:w-full">
                             <button
-                                // onClick={getUserCity}
+                                onClick={getUserCity}
                                 type="button" className="mx-auto py-3 my-4 text-white font-semibold rounded bg-[#42ADFD] w-[100%]">
                                 Get Device Location
                             </button>
