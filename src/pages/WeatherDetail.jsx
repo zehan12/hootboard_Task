@@ -1,13 +1,14 @@
-import { Fragment } from "react"
+import { Fragment } from "react";
+import {BiLeftArrowAlt} from "react-icons/bi"
 
 const WeatherDetail = () => {
     return (
         <Fragment>
             <div className="w-full bg-white rounded shadow-lg m-2 md:max-w-sm md:mx-auto cursor-pointer flex flex-col justify-center items-center text-center border-none">
-                <div class="text-md text-left w-full font-bold  text-gray-900 p-4 border-b-2 border-b-gray-300">
-                    <span>---</span>
-                    <span class="uppercase">Weater App</span>
-                     </div>
+                <div class="text-md text-xl text-left w-full font-semibold  text-[#42ADFD] p-4 border-b-2 border-b-gray-300 flex items-center gap-2">
+                    <span><BiLeftArrowAlt size={29} /></span>
+                    <span class="uppercase">Weather App</span>
+                </div>
                 <div class="w-32 h-32 flex items-center justify-center">
                     <svg class="h-20" viewBox="0 0 81 73" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
