@@ -10,7 +10,6 @@ const Form = ({ navigate }) => {
     const [cityName, setCityName] = useState("");
     const { position, positionError } = usePosition();
 
-
     const getcityWeather = async (cityName) => {
         try {
             const data = await getWeatherData(cityName);
@@ -24,10 +23,7 @@ const Form = ({ navigate }) => {
     }
 
     const getUserCity = async () => {
-
         try {
-
-            console.log("enter", positionError)
             if (positionError) {
                 toast.custom((t) => (<Toaster
                     icon={RiErrorWarningFill}
@@ -36,7 +32,6 @@ const Form = ({ navigate }) => {
             }
             else {
                 const data = await getLocation(position);
-                setCityName(data?.data?.name)
                 toast.success("city found", cityName)
                 if (data?.data?.name) navigate(`location/${data.data.name}`, { state: { weather: data.data } })
             }
@@ -47,7 +42,7 @@ const Form = ({ navigate }) => {
     }
 
     const handleKeyPress = (e) => {
-        if (e.key === "Enter" && cityName !== "") {
+        if (e.key === "Enter" && cityName !== "" ) {
             getcityWeather(cityName)
             setCityName("")
         }
