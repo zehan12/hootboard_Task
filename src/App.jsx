@@ -8,6 +8,7 @@ import { Toaster } from 'react-hot-toast';
 import NotFound from './pages/NotFound';
 import ErrorBoundary from './errorboundary/ErrorBoundary';
 import { delayForDisplay } from './utils/helpers';
+import Skeleton from './components/Skeleton';
 
 const Form = lazy(() => delayForDisplay(import("./pages/Form")));
 const WeatherDetail = lazy(() => delayForDisplay(import("./pages/WeatherDetail")));
@@ -20,14 +21,14 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: (<Suspense fallback={<div>Loading..</div>}>
+      element: (<Suspense fallback={<Skeleton />}>
         <Form />
-      </Suspense >),
+      </Suspense>),
       errorElement: <ErrorBoundary />
     },
     {
       path: "/location/:cityName",
-      element: (<Suspense fallback={<div>Loading..</div>}>
+      element: (<Suspense fallback={<Skeleton />}>
         <WeatherDetail />
       </Suspense >)
     },
