@@ -1,19 +1,23 @@
 import React, { useState, Fragment } from "react";
 import { toast } from "react-hot-toast";
 import { getWeatherData } from "../apis/weather";
+import withRouter from "../hoc/withRouter";
 
-const Form = () => {
-    const [location, setLocation] = useState("");
+const Form = ({ navigate }) => {
+    const [cityName, setCityName] = useState("");
     const [weather, setWeather] = useState([]);
 
 
-    const getcityWeather = async (location) => {
+    const getcityWeather = async (cityName) => {
         try {
-            const data = await getWeatherData(location);
+            const data = await getWeatherData(cityName);
             setWeather(data.data)
             toast.success("city found")
+            navigate(`location/${cityName}`, { state: { weather: data.data } })
+
         } catch (error) {
-            toast.error(error.response.data.message)
+            console.log(error, "error")
+            if (error.response) return toast.error(error.response.data.message)
         }
     }
 
@@ -33,9 +37,9 @@ const Form = () => {
     }
 
     const handleKeyPress = (e) => {
-        if (e.key === "Enter" && location !== "") {
-            getcityWeather(location)
-            setLocation("")
+        if (e.key === "Enter" && cityName !== "") {
+            getcityWeather(cityName)
+            setCityName("")
         }
         return
     }
@@ -49,7 +53,7 @@ const Form = () => {
                     <div className="mb-4  mx-4 md:flex md:flex-wrap md:justify-between bg-white">
                         <div className="flex flex-col mb-4 md:w-full">
                             <input className="border py-2 px-3 text-grey-darkest placeholder:text-center focus:outline-none" type="text" name="location" placeholder="Enter city name"
-                                value={location} onChange={(e) => setLocation(e.target.value)}
+                                value={cityName} onChange={(e) => setCityName(e.target.value)}
                                 onKeyPress={handleKeyPress}
                             />
                         </div>
@@ -79,5 +83,5 @@ const Form = () => {
 }
 
 
-export default Form;
+export default withRouter(Form);
 

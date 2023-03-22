@@ -2,9 +2,10 @@ import { Fragment } from "react";
 import { BiLeftArrowAlt } from "react-icons/bi";
 import { SlLocationPin } from "react-icons/sl"
 import { BsThermometerSun, BsDropletHalf } from "react-icons/bs";
+import withRouter from "../hoc/withRouter";
 
-const WeatherDetail = ({ }) => {
-    
+const WeatherDetail = ({ location }) => {
+    console.log(location)
     return (
         <Fragment>
             <div className="w-full bg-white rounded shadow-lg m-2 md:max-w-sm md:mx-auto cursor-pointer flex flex-col justify-center items-center text-center border-none">
@@ -55,4 +56,4 @@ const WeatherDetail = ({ }) => {
     )
 }
 
-export default WeatherDetail;
+export default withRouter(WeatherDetail);
