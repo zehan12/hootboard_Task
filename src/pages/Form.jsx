@@ -1,15 +1,14 @@
 import React, { useState, Fragment } from "react";
 import { toast } from "react-hot-toast";
 import { getWeatherData } from "../apis/weather";
+import { RiErrorWarningFill } from "react-icons/ri"
 import withRouter from "../hoc/withRouter";
+import { usePosition } from "../hooks/usePostion";
 
 const Form = ({ navigate }) => {
     const [cityName, setCityName] = useState("");
     const [weather, setWeather] = useState([]);
-
-    const {latitude, longitude, error} = usePosition();
-
-    console.log(latitude, longitude)
+    const { position, error } = usePosition();
 
 
     const getcityWeather = async (cityName) => {
@@ -26,18 +25,23 @@ const Form = ({ navigate }) => {
     }
 
     const getUserCity = async () => {
-        const showPosition = async ({ coords }) => {
-            const APIkey = '8a735895b3560c7dd2ad8d685835a447';
-            const URL = `https://api.openweathermap.org/data/2.5/weather?lat=${coords?.latitude}&lon=${coords?.longitude}&appid=${APIkey}`;
-            const res = await fetch(URL);
-            const data = await res.json();
-            console.log(data)
+        // const showPosition = async ({ coords }) => {
+        //     const APIkey = '8a735895b3560c7dd2ad8d685835a447';
+        //     const URL = `https://api.openweathermap.org/data/2.5/weather?lat=${coords?.latitude}&lon=${coords?.longitude}&appid=${APIkey}`;
+        //     const res = await fetch(URL);
+        //     const data = await res.json();
+        //     console.log(data)
+        // }
+
+        if (error!=="") {
+            toast.custom((t) => (<div id="toast-default" class="flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400" role="alert">
+                <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8  rounded-lg bg-red-800 text-blue-200">
+                    <RiErrorWarningFill size={"26"} color={"white"} />
+                </div>
+                <div class="ml-3 text-black text-sm font-semibold">{error}</div>
+            </div>))
         }
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            alert("Geolocation is not supported by this browser.");
-        }
+
     }
 
     const handleKeyPress = (e) => {
@@ -85,11 +89,6 @@ const Form = ({ navigate }) => {
         </Fragment>
     )
 }
-
-
-
-
-
 
 export default withRouter(Form);
 
