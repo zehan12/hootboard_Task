@@ -21,5 +21,5 @@ export const getLocation = async ({ coords }) => {
         lon: coords.longitude,
         APPID: API_KEY
     })
-    return [data,res];
+    return [data, res];
 }

@@ -10,6 +10,7 @@ const WeatherDetail = ({ location: { state }, navigate }) => {
 
     const [weather, setWeather] = useState(state?.weather);
 
+
     useEffect(() => {
         if (state === null) navigate("/")
     }, []);

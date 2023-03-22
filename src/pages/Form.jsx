@@ -7,6 +7,10 @@ const Form = ({ navigate }) => {
     const [cityName, setCityName] = useState("");
     const [weather, setWeather] = useState([]);
 
+    const {latitude, longitude, error} = usePosition();
+
+    console.log(latitude, longitude)
+
 
     const getcityWeather = async (cityName) => {
         try {
@@ -81,6 +85,10 @@ const Form = ({ navigate }) => {
         </Fragment>
     )
 }
+
+
+
+
 
 
 export default withRouter(Form);
