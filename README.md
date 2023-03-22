@@ -1,7 +1,7 @@
 # ⛅ Weather App
 A simple weather app that allows you to get current weather information, based on the city you enter or based on your current location.
 
-### DEMO: https://lawyers-management-system.vercel.app/
+### DEMO: https://weather-app-zehan12.vercel.app/
 
 ## Screenshots
 Page 1
