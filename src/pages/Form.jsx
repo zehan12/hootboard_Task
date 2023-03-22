@@ -1,16 +1,20 @@
 import React, { useState, Fragment } from "react";
 import { toast } from "react-hot-toast";
+import { getWeatherData } from "../apis/weather";
 
 const Form = () => {
-
     const [location, setLocation] = useState("");
+    const [weather, setWeather] = useState([]);
+
 
     const getcityWeather = async (location) => {
-        const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=5e2a6dff2f070b7cc434af93e5e4d950`);
-        const data = await res.json();
-        if (!res.ok) return toast.error(data.message)
-        else toast.success("success")
-        console.log(data)
+        try {
+            const data = await getWeatherData(location);
+            setWeather(data.data)
+            toast.success("city found")
+        } catch (error) {
+            toast.error(error.response.data.message)
+        }
     }
 
     const getUserCity = async () => {
@@ -29,7 +33,7 @@ const Form = () => {
     }
 
     const handleKeyPress = (e) => {
-        if (e.key === "Enter") {
+        if (e.key === "Enter" && location !== "") {
             getcityWeather(location)
             setLocation("")
         }
