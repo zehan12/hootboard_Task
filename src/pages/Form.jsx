@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from "react";
+import { toast } from "react-hot-toast";
 
 const Form = () => {
 
@@ -7,6 +8,8 @@ const Form = () => {
     const getcityWeather = async (location) => {
         const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=5e2a6dff2f070b7cc434af93e5e4d950`);
         const data = await res.json();
+        if (!res.ok) return toast.error(data.message)
+        else toast.success("success")
         console.log(data)
     }
 
@@ -26,10 +29,11 @@ const Form = () => {
     }
 
     const handleKeyPress = (e) => {
-        if (e.key === "Enter") 
+        if (e.key === "Enter") {
+            getcityWeather(location)
             setLocation("")
-        else
-            return
+        }
+        return
     }
 
     return (
