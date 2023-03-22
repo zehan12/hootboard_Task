@@ -1,9 +1,8 @@
-import React,{ useState, Fragment } from "react";
+import React, { useState, Fragment } from "react";
 
 const Form = () => {
 
     const [location, setLocation] = useState("");
-
 
     const getcityWeather = async (location) => {
         const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=5e2a6dff2f070b7cc434af93e5e4d950`);
@@ -26,6 +25,13 @@ const Form = () => {
         }
     }
 
+    const handleKeyPress = (e) => {
+        if (e.key === "Enter") 
+            setLocation("")
+        else
+            return
+    }
+
     return (
         <Fragment>
             <div className="flex items-center h-screen w-full">
@@ -36,6 +42,7 @@ const Form = () => {
                         <div className="flex flex-col mb-4 md:w-full">
                             <input className="border py-2 px-3 text-grey-darkest placeholder:text-center focus:outline-none" type="text" name="location" placeholder="Enter city name"
                                 value={location} onChange={(e) => setLocation(e.target.value)}
+                                onKeyPress={handleKeyPress}
                             />
                         </div>
 
