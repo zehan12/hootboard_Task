@@ -67,7 +67,7 @@ const Form = ({ navigate }) => {
                 <div className="flex items-center h-screen w-full">
                     <div className="w-full bg-white rounded shadow-lg m-2 md:max-w-sm md:mx-auto">
 
-                        <h1 className="block bg-white w-full px-4 mt-2 text-2xl mx-[10-px] font-semibold text-[#42ADFD] text-left text-grey-darkest mb-6 border-b-[1px] pb-3 border-gray-200">Wheater App</h1>
+                        <h1 className="block bg-white w-full px-4 mt-2 text-2xl mx-[10-px] font-semibold text-[#42ADFD] text-left text-grey-darkest mb-6 border-b-[1px] pb-3 border-gray-200">Weather App</h1>
 
                         <div className="mb-4  mx-4 md:flex md:flex-wrap md:justify-between bg-white">
                             <div className="flex flex-col mb-4 md:w-full">
