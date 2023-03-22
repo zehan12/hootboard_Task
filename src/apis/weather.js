@@ -14,12 +14,12 @@ export const getWeatherData = async (cityName) => {
     return res;
 }
 
-export const getLocation = async ({ coords }) => {
-    // const URL = `https://api.openweathermap.org/data/2.5/weather?lat=${coords?.latitude}&lon=${coords?.longitude}&appid=${APIkey}`;
-    const { data, res } = await axios.get(URL, {
-        lat: coords.latitude,
-        lon: coords.longitude,
-        APPID: API_KEY
-    })
-    return [data, res];
+export const getLocation = async ({ lat, lon }) => {
+    const res = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APIKEY}`)
+    // const res = await axios.get(URL, {
+    //     lat: String(lat),
+    //     lon: String(lon),
+    //     appid: APIKEY
+    // })
+    return res;
 }

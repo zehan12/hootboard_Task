@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 export const usePosition = () => {
     const [position, setPosition] = useState({});
-    const [error, setError] = useState(null);
+    const [positionError, setPositionError] = useState(null);
 
     const showPosition = async ({ coords }) => {
         setPosition({
@@ -12,12 +12,10 @@ export const usePosition = () => {
 
     useEffect(() => {
         if (navigator.geolocation) {
-            setError("Geolocation is not supported by this browser.");
-
             navigator.geolocation.getCurrentPosition(showPosition);
         } else {
-            setError("Geolocation is not supported by this browser.");
+            setPositionError("Geolocation is not supported by this browser.");
         }
     }, []);
-    return { position, error };
+    return { position, positionError };
 }
