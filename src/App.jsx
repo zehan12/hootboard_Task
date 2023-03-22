@@ -1,19 +1,18 @@
-import { Fragment, Suspense, lazy } from 'react'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import './App.css'
-// import Form from './pages/Form'
-// import WeatherDetail from './pages/WeatherDetail';
-
+// External 
+import { Fragment, Suspense, lazy } from 'react';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+
+// Internals
+import './App.css'
 import NotFound from './pages/NotFound';
 import ErrorBoundary from './errorboundary/ErrorBoundary';
 import { delayForDisplay } from './utils/helpers';
 import Skeleton from './components/Skeleton';
 
+// lazy
 const Form = lazy(() => delayForDisplay(import("./pages/Form")));
 const WeatherDetail = lazy(() => delayForDisplay(import("./pages/WeatherDetail")));
-
-
 
 
 const App = () => {
@@ -30,7 +29,8 @@ const App = () => {
       path: "/location/:cityName",
       element: (<Suspense fallback={<Skeleton />}>
         <WeatherDetail />
-      </Suspense >)
+      </Suspense >),
+      errorElement: <ErrorBoundary />
     },
     {
       path: "*",
